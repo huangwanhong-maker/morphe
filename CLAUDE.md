@@ -134,6 +134,4 @@ When editing morphe from the laboratory's `lib/morphe`:
 
 ## 9. Current State
 
-As of 2026-10-21, only design documents exist; there is no code.
-
-The remote is `https://github.com/huangwanhong-maker/morphe`. It still has to be created on GitHub.
+As of 2026-10-22, only design documents exist; there is no code. The repository is published at `https://github.com/huangwanhong-maker/morphe`.
