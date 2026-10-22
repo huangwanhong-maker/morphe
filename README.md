@@ -15,7 +15,7 @@ morphe computes with mathematical structures, whether algebraic, topological, ca
   - formal languages and automata;
   - notions of structural sameness, such as isomorphism, homotopy equivalence, bisimulation and bimorphism.
 
-morphe is one of three libraries developed for the [Integrative Astronomy, Geography, Oceanography Laboratory](https://github.com/huangwanhong-maker/Integrative_Astronomy_Geography_Oceanography_Laboratory), but it stands on its own.
+morphe is one of the foundation libraries of [The Science Infrastructures](https://github.com/huangwanhong-maker/The-Science-Infrastructures), but it stands on its own.
 
 ## 2. Planned Modules
 

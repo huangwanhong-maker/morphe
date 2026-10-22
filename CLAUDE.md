@@ -2,7 +2,7 @@
 
 This file guides Claude Code in the morphe repository.
 
-morphe is one of three libraries developed for the [Integrative Astronomy, Geography, Oceanography Laboratory](https://github.com/huangwanhong-maker/Integrative_Astronomy_Geography_Oceanography_Laboratory). The laboratory includes it as the git submodule `lib/morphe`. It is a project in its own right, and must make sense without the laboratory.
+morphe is one of the foundation libraries of [The Science Infrastructures](https://github.com/huangwanhong-maker/The-Science-Infrastructures), which includes it as the git submodule `foundations/morphe`. It is a project in its own right, and must make sense without the infrastructure.
 
 ## 1. Purpose and Scope
 
@@ -24,7 +24,7 @@ Out of scope:
 |---|---|
 | Floating-point numerical methods and devices | calx |
 | Geometry as physics uses it, units and physical laws | physis |
-| Anything about particular bodies, datasets or observations | the laboratory |
+| Anything about particular bodies, datasets or observations | the domains of The Science Infrastructures |
 
 ## 2. Invariants
 
@@ -86,20 +86,20 @@ Module dependencies follow [architecture §2](docs/architecture.md).
 
 ### 5.4 Shared Conventions
 
-calx, morphe, physis and the laboratory keep the following identical:
+calx, morphe, physis and the infrastructure keep the following identical:
 
 - the writing style;
 - the status vocabulary;
 - the conventions for decisions and ideas.
 
-Change any of these in every repository of [The Science Infrastructures](https://github.com/huangwanhong-maker/The-Science-Infrastructures) together: the three libraries, the laboratories and the umbrella.
+Change any of these in every repository of [The Science Infrastructures](https://github.com/huangwanhong-maker/The-Science-Infrastructures) together: the foundation libraries and the infrastructure's repository.
 
-### 5.5 Work Inside the Laboratory
+### 5.5 Work Inside the Infrastructure
 
-When editing morphe from the laboratory's `lib/morphe`:
+When editing morphe from the infrastructure's `foundations/morphe`:
 
 1. Commit in morphe first.
-2. Then commit the updated pointer in the laboratory.
+2. Then commit the updated pointer in the infrastructure.
 
 ## 6. Mathematical Conventions
 
@@ -117,7 +117,7 @@ When editing morphe from the laboratory's `lib/morphe`:
 
 ## 7. Technology
 
-- **Language: C++.** This follows laboratory ADR 0003 and decision 0002 here.
+- **Language: C++.** This follows ADR 0003 of The Science Infrastructures and decision 0002 here.
 - **Provisional choices:** C++20, CMake, and nanobind for Python bindings.
 - **Exact-arithmetic back ends.** Candidates are FLINT and GMP. Both are LGPL, so adopting either needs an explicit decision. Writing our own is the alternative.
 - **Licences.** morphe is MIT-licensed. Systems such as GAP, Macaulay2, Singular and Sage are GPL: study them, but do not link to them.
