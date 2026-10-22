@@ -92,7 +92,7 @@ calx, morphe, physis and the laboratory keep the following identical:
 - the status vocabulary;
 - the conventions for decisions and ideas.
 
-Change any of these in all four repositories together.
+Change any of these in every repository of [The Science Infrastructures](https://github.com/huangwanhong-maker/The-Science-Infrastructures) together: the three libraries, the laboratories and the umbrella.
 
 ### 5.5 Work Inside the Laboratory
 
