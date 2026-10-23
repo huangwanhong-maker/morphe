@@ -33,3 +33,5 @@
 | K*, the dual 2-complex | of a pseudomanifold K | `dual_two_complex` |
 | σ_c | the permutation of colour c of a coloured graph | `ColouredGraph::sigma` |
 | g_J, ω | genus of a jacket, Gurau's degree Σ g_J | `jacket_genera`, `degree` |
+| X_s, s(c) | the sub-complex at stage s of a filtration, the stage of a cell | `Filtration` |
+| [b, d) | an interval of persistence: a class of H_k over ℤ/2 born at stage b and dying at d (or never) | `PersistenceInterval` |

@@ -6,4 +6,5 @@ target_link_libraries(morphe_topology INTERFACE morphe::algebra morphe::combinat
 if(MORPHE_CHECKS)
   morphe_add_check(check_morphe_topology SOURCES tests/check_topology.cpp LIBRARIES morphe::topology)
   morphe_add_check(check_morphe_bubbles SOURCES tests/check_bubbles.cpp LIBRARIES morphe::topology)
+  morphe_add_check(check_morphe_persistence SOURCES tests/check_persistence.cpp LIBRARIES morphe::topology)
 endif()

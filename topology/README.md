@@ -1,6 +1,6 @@
 # topology: Complexes and Their Invariants
 
-*Status: draft (2026-10-23): CW and simplicial complexes, a catalogue of constructions, homology, cohomology and fundamental groups, surfaces, manifolds, collapses, dual 2-complexes and coloured graphs.* Cubical complexes, simplicial sets, persistence, cup products, discrete Morse theory, the recognition of 3-manifolds and knots are planned ([decision 0004](../development/decisions/0004-the-first-slice-cell-complexes.md), §2.2).
+*Status: draft (2026-10-23): CW and simplicial complexes, a catalogue of constructions, homology, cohomology and fundamental groups, surfaces, manifolds, collapses, dual 2-complexes and coloured graphs; persistent homology over ℤ/2 (2026-10-24).* Cubical complexes, simplicial sets, persistence over other fields, cup products, discrete Morse theory, the recognition of 3-manifolds and knots are planned ([decision 0004](../development/decisions/0004-the-first-slice-cell-complexes.md), §2.2).
 
 ## 1. Purpose
 
@@ -26,6 +26,7 @@ Spaces built from cells, and what can be computed of them exactly. The 2-complex
 | `simplicial.hpp` | `SimplicialComplex::from_facets`, `find`, `facets`, `is_pure`, `cofaces`, `chain_complex`, `cw`, `link`, `star`, `skeleton`; `renumbered`, `barycentric_subdivision`, `join`, `cone`, `suspension` |
 | `constructions.hpp` | `parse_polygons`, `polygon_complex`; `orientable_surface`, `nonorientable_surface`, `klein_bottle`, `dunce_hat`, `sphere`, `real_projective_space`, `complex_projective_space`, `lens_space`, `presentation_complex`, `circle`, `interval`, `product`, `torus_lattice`; `simplex`, `simplex_boundary`, `torus_7`, `projective_plane_6`, `octahedron` |
 | `invariants.hpp` | `homology`, `betti`; `fundamental_group(X, base)` → `FundamentalGroup{presentation, generator_edges, loops, simplified, simplified_loops, abelianisation}` |
+| `persistence.hpp` | `Filtration{vertex, edge, face, higher}` (a stage for each cell, faces no later than cofaces); `persistent_homology(X, F, zero_length)` → `PersistenceDiagram{intervals}`, each `PersistenceInterval{dimension, birth, creator, death, killer}`, and `betti(dim, stage)`: the standard reduction of the boundary matrix over ℤ/2 in the order of the filtration (Edelsbrunner, Letscher and Zomorodian 2002; Zomorodian and Carlsson 2005; Edelsbrunner and Harer 2010, §VII.1) |
 | `surfaces.hpp` | `classify_surface(X)` → `SurfaceType{surface, closed, orientable, euler, genus, crosscaps, boundary_components, name, normal_form, reason, orientation}` |
 | `manifolds.hpp` | `manifold_type(K)` → `ManifoldType{dimension, pure, pseudomanifold, manifold, exact, closed, reason}` |
 | `collapse.hpp` | `collapse(X)` → `Collapse{attempted, collapsible, steps, moves, remaining, …}` |
