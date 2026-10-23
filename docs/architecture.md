@@ -44,13 +44,15 @@ morphe depends on no other project library. In particular it does not depend on 
 
 | Module | Depends on |
 |---|---|
+| `logic` | — |
 | `arithmetic` | — |
 | `categories` | — |
 | `equivalence` | `categories` |
 | `algebra` | `arithmetic`, `categories`, `equivalence` |
-| `topology` | `algebra`, `categories`, `equivalence` |
+| `combinatorics` | `categories`, `equivalence` |
+| `topology` | `algebra`, `combinatorics`, `categories`, `equivalence` |
 | `algebraic_geometry` | `arithmetic`, `algebra` |
-| `formal` | `categories`, `equivalence` |
+| `formal` | `categories`, `equivalence`, `logic` |
 
 - **Generic algorithms.** Generic equivalence algorithms live in `equivalence/`. Examples are canonical forms, partition refinement and coalgebra morphisms.
 - **Structure-specific algorithms.** An equivalence specific to one kind of structure lives in that structure's module and uses `equivalence/`. An example is homotopy equivalence of complexes.

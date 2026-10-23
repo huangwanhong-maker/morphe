@@ -11,6 +11,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 |---|---|---|
 | [0001](0001-record-architecture-decisions.md) | Record architecture decisions | Accepted |
 | [0002](0002-scope-boundaries-and-independence.md) | Scope, boundaries and independence | Accepted |
+| [0003](0003-logic-and-combinatorics.md) | Logic and type theory, and combinatorics and graphs, in the plan | Accepted |
 
 ## 2. Template
 

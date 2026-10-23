@@ -55,10 +55,10 @@ morphe shares its governing principle with its sibling repositories: **modular, 
 ```
 morphe/
 ├── docs/          architecture
-└── development/   decisions · ideas
+└── development/   decisions · ideas · release notes
 ```
 
-Module directories (`arithmetic/`, `categories/`, `equivalence/`, `algebra/`, `topology/`, `algebraic_geometry/`, `formal/`) are created together with their first content. Until then, each is listed as `planned` in the README.
+Module directories (`logic/`, `arithmetic/`, `categories/`, `equivalence/`, `algebra/`, `combinatorics/`, `topology/`, `algebraic_geometry/`, `formal/`; decision 0003 added the first and the sixth) are created together with their first content, as `<module>/include/morphe/<module>/` with a CMake target `morphe::<module>` (the infrastructure's ADR 0035). Until then, each is listed as `planned` in the README.
 
 ## 5. Working Procedures
 
@@ -78,6 +78,7 @@ Module dependencies follow [architecture §2](docs/architecture.md).
 
 - **Decisions** are numbered records in `development/decisions/`. A record is never rewritten; a later record supersedes it.
 - **Ideas** are files named `development/ideas/YYYY-MM-DD-slug.md`. Their status is `seed`, `promoted` or `abandoned`.
+- **Release notes.** At each commit, add to `development/release-notes/YYYY-MM-DD.md` (one file per day, one short section per commit) a concise summary in plain prose of what is new, what one can now do and what works better, not a list of changes (the git log keeps those); not between commits. This convention is shared with the sibling repositories.
 
 ### 5.3 Change Discipline
 
@@ -90,7 +91,7 @@ calx, morphe, physis and the infrastructure keep the following identical:
 
 - the writing style;
 - the status vocabulary;
-- the conventions for decisions and ideas.
+- the conventions for decisions, ideas and release notes.
 
 Change any of these in every repository of [The Science Infrastructures](https://github.com/huangwanhong-maker/The-Science-Infrastructures) together: the foundation libraries and the infrastructure's repository.
 
