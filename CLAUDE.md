@@ -54,11 +54,14 @@ morphe shares its governing principle with its sibling repositories: **modular, 
 
 ```
 morphe/
-├── docs/          architecture
-└── development/   decisions · ideas · release notes
+├── CMakeLists.txt  the project: one target morphe::<module> per module, and morphe_add_check
+├── include/morphe/ check.hpp, the report every check prints (decision 0004, §2.6)
+├── arithmetic/ · algebra/ · combinatorics/ · topology/     the modules written
+├── docs/           architecture · glossary
+└── development/    decisions · ideas · release notes
 ```
 
-Module directories (`logic/`, `arithmetic/`, `categories/`, `equivalence/`, `algebra/`, `combinatorics/`, `topology/`, `algebraic_geometry/`, `formal/`; decision 0003 added the first and the sixth) are created together with their first content, as `<module>/include/morphe/<module>/` with a CMake target `morphe::<module>` (the infrastructure's ADR 0035). Until then, each is listed as `planned` in the README.
+Module directories (`logic/`, `arithmetic/`, `categories/`, `equivalence/`, `algebra/`, `combinatorics/`, `topology/`, `algebraic_geometry/`, `formal/`; decision 0003 added the first and the sixth) are created together with their first content, as `<module>/include/morphe/<module>/` with a CMake target `morphe::<module>` and checks in `<module>/tests/` (the infrastructure's ADR 0035). Until then, each is listed as `planned` in the README. Written so far: `arithmetic`, `algebra`, `combinatorics`, `topology` (decision 0004).
 
 ## 5. Working Procedures
 
@@ -125,14 +128,12 @@ When editing morphe from the infrastructure's `foundations/morphe`:
 
 ## 8. Open Decisions
 
-1. **First vertical slice.** Two candidates:
-   - arithmetic → algebra (Smith normal form) → topology (homology of complexes). physis needs this path for discrete exterior calculus.
-   - categories → equivalence → formal (partition refinement, bisimulation), as a research slice.
-2. **Data model.** Should C-sets be the common representation? See the [idea](development/ideas/2026-10-21-c-sets-as-common-data-model.md).
+1. **The second vertical slice.** The first, arithmetic → algebra → topology, is written (decision 0004). Candidates next: categories → equivalence → formal (partition refinement, bisimulation), as a research slice; or polynomials → `algebraic_geometry` (decision 0004, §2.3).
+2. **Data model.** Should C-sets be the common representation? Complexes are explicit arrays with attaching words (decision 0004, §2.4); graphs and meshes remain open. See the [idea](development/ideas/2026-10-21-c-sets-as-common-data-model.md).
 3. **Formal proofs.** Should key theorems be proved in Lean 4 with Mathlib, alongside the C++ code?
-4. **Exact-arithmetic back end.** FLINT, GMP, or our own.
+4. **Exact-arithmetic back end.** Our own for now (decision 0004, §2.5); FLINT or GMP behind `Integer` would need a decision of its own.
 5. **Front end.** Python bindings only, or also a small language of morphe's own for presenting structures.
 
 ## 9. Current State
 
-As of 2026-10-22, only design documents exist; there is no code. The repository is published at `https://github.com/huangwanhong-maker/morphe`.
+As of 2026-10-23, the first slice is written (decision 0004): `arithmetic` (integers without bound, rationals, residues), `algebra` (the Smith normal form, homology with generators, presented and finite groups), `combinatorics` (multigraphs and spanning forests) and `topology` (CW and simplicial complexes, homology, fundamental groups, surfaces, manifolds, collapses, dual 2-complexes, coloured graphs), header-only, with 4 check programs and 85 checks. The repository is published at `https://github.com/huangwanhong-maker/morphe`.

@@ -22,13 +22,13 @@ morphe is one of the foundation libraries of [The Science Infrastructures](https
 | Module | Content | Status |
 |---|---|---|
 | `logic` | Propositional, first-order and modal logic; set theory as a foundation; computability; the simply and dependently typed λ-calculi, proof terms and normalisation (Curry–Howard–Lambek); satisfiability | planned |
-| `arithmetic` | ℤ, ℚ, finite fields, algebraic numbers, polynomial rings; computational number theory | planned |
+| [`arithmetic`](arithmetic/) | ℤ, ℚ, finite fields, algebraic numbers, polynomial rings; computational number theory | draft: integers, rationals, residues |
 | `categories` | Categories, functors and natural transformations; limits and colimits; monoidal structure; algebras and coalgebras of functors | planned |
 | `equivalence` | Generic algorithms for sameness: canonical forms, partition refinement for simulation and bisimulation, morphisms between coalgebras | planned |
-| `algebra` | Groups (finite, permutation, finitely presented), rings, modules, representations; orders and lattices; universal algebra. Homological algebra: chain complexes, Smith normal form. Exact linear algebra over ℤ, ℚ and finite fields: elimination, Hermite and Smith normal forms, kernels, determinants without rounding. | planned |
-| `combinatorics` | Enumeration, generating functions, designs; graphs and hypergraphs as C-sets (paths, cuts, flows, matchings, colourings, isomorphism by refinement); matroids; exact combinatorial optimisation | planned |
-| `topology` | Simplicial, cubical and CW complexes. Homology and cohomology. Persistent homology. Fundamental groups. Homotopy equivalence. | planned |
-| `algebraic_geometry` | Gröbner bases and varieties | planned |
+| [`algebra`](algebra/) | Groups (finite, permutation, finitely presented), rings, modules, representations; orders and lattices; universal algebra. Homological algebra: chain complexes, Smith normal form. Exact linear algebra over ℤ, ℚ and finite fields: elimination, Hermite and Smith normal forms, kernels, determinants without rounding. | draft: Smith normal form, homology with generators, presentations, finite groups |
+| [`combinatorics`](combinatorics/) | Enumeration, generating functions, designs; graphs and hypergraphs as C-sets (paths, cuts, flows, matchings, colourings, isomorphism by refinement); matroids; exact combinatorial optimisation | draft: multigraphs, spanning forests |
+| [`topology`](topology/) | Simplicial, cubical and CW complexes. Homology and cohomology. Persistent homology. Fundamental groups. Homotopy equivalence. Surfaces and combinatorial manifolds; dual complexes; coloured graphs. | draft: CW and simplicial complexes, homology, π₁, surfaces, collapses, duals, coloured graphs |
+| `algebraic_geometry` | Polynomial ideals and Gröbner bases; elimination; dimension, Hilbert series and resolutions; varieties over ℚ and finite fields; toric varieties; real algebraic geometry; tropical geometry (the plan of [decision 0004](development/decisions/0004-the-first-slice-cell-complexes.md), §2.3) | planned |
 | `formal` | Words and trees; automata, grammars and transducers; rewriting systems; transition systems. Bimorphisms in the sense of Arnold and Dauchet. | planned |
 
 ## 3. Principles
@@ -51,7 +51,15 @@ morphe depends on no other library of the project.
 
 ## 5. Status
 
-**Planned (2026-10-23).** Only design documents exist; there is no code yet. [Decision 0003](development/decisions/0003-logic-and-combinatorics.md) adds `logic` and `combinatorics` to the plan; the place of each module in the whole of the project's mathematics is the infrastructure's [map of the mathematics](https://github.com/huangwanhong-maker/The-Science-Infrastructures/blob/main/docs/mathematics.md).
+**Draft (2026-10-23).** The first slice is written ([decision 0004](development/decisions/0004-the-first-slice-cell-complexes.md)): exact integers and rationals, linear algebra over ℤ with the Smith normal form, the homology of chain complexes with its generators, presented and finite groups, and the topology of cell complexes: CW and simplicial complexes, their homology and fundamental groups, the classification of surfaces, collapses, dual 2-complexes and coloured graphs. Four modules, header-only, with 85 checks. The rest is planned; [decision 0003](development/decisions/0003-logic-and-combinatorics.md) added `logic` and `combinatorics` to the plan, and the place of each module in the whole of the project's mathematics is the infrastructure's [map of the mathematics](https://github.com/huangwanhong-maker/The-Science-Infrastructures/blob/main/docs/mathematics.md).
+
+Build and check with CMake 3.20 or later; morphe needs no other library:
+
+```
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j
+ctest --test-dir build --output-on-failure
+```
 
 ## 6. License
 

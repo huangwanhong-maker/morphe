@@ -1,0 +1,67 @@
+# topology: Complexes and Their Invariants
+
+*Status: draft (2026-10-23): CW and simplicial complexes, a catalogue of constructions, homology, cohomology and fundamental groups, surfaces, manifolds, collapses, dual 2-complexes and coloured graphs.* Cubical complexes, simplicial sets, persistence, cup products, discrete Morse theory, the recognition of 3-manifolds and knots are planned ([decision 0004](../development/decisions/0004-the-first-slice-cell-complexes.md), §2.2).
+
+## 1. Purpose
+
+Spaces built from cells, and what can be computed of them exactly. The 2-complex is the first object: it carries the fundamental group and the first homology groups; its 2-cells are where the curvature of a lattice gauge field is read; and the Feynman graphs of group field theory are 2-complexes, the dual 2-skeletons of the pseudomanifolds they encode. physis builds its gauge fields, spin foams and discrete spacetimes on these complexes.
+
+## 2. Concepts
+
+- **A CW complex, combinatorially.** Each 1-cell has a tail and a head; each 2-cell a base vertex and an attaching word, a closed edge path; each higher cell its cellular boundary as integer incidences (Hatcher 2002, §2.2). Up to homotopy in dimension 2, and for homology in every dimension, this is all that matters. The cellular chain complex is read from it, and `validate` checks that the words close and that ∂∂ = 0.
+- **Simplicial complexes**, given by facets and holding every face, oriented by vertex order; links, stars, skeleta, the barycentric subdivision, joins, cones and suspensions (Spanier 1966; Rourke and Sanderson 1972). Each is also a CW complex, a triangle attached by [v₀v₁][v₁v₂][v₀v₂]⁻¹.
+- **Constructions.** Polygons glued by words ("abAB" the torus, "aa" the projective plane, "abAb" the Klein bottle, "aaA" the dunce hat), with corners identified by union-find; spheres, real and complex projective spaces and lens spaces by their minimal cell structures; presentation complexes; products of CW complexes by the Leibniz rule, the 2-cells keeping attaching words, and with them lattice tori of any dimension; the standard small triangulations.
+- **The fundamental group** on the edges outside a spanning tree of the 1-skeleton, with a relator from each 2-cell and a loop at the base for each generator (Hatcher, Proposition 1.26); its simplification and abelianisation by morphe `algebra`.
+- **Surfaces** are recognised exactly (every edge on two sides or one, every vertex link a circle or an arc) and classified by orientability, Euler characteristic and boundary circles (Massey 1991, ch. 1), with a consistent orientation of the 2-cells when one exists.
+- **Manifolds** among simplicial complexes: pseudomanifolds, and combinatorial manifolds by their vertex links, exactly in dimension at most 3, by homology above.
+- **Collapses** of 2-complexes: free edges of 2-cells and free vertices of edges (Whitehead 1939). In dimension 2 the greedy order decides collapsibility; the dunce hat is contractible and not collapsible (Zeeman 1964).
+- **The dual 2-complex** of a triangulated pseudomanifold: a vertex per top simplex, an edge per interior facet, a 2-cell per cycle around a codimension-2 simplex: the 2-complex of spin foams and lattice gauge theory on a triangulation (Reisenberger and Rovelli 1997; Oriti 2001).
+- **Coloured graphs**, (D+1)-regular and properly edge-coloured, encode D-dimensional pseudomanifolds (Pezzana 1974; Ferri, Gagliardi and Grasselli 1986): k-cells are the components of the subgraphs on D − k colours. They are the Feynman graphs of coloured tensor models and group field theories (Gurau 2011); their jackets, degree and melonic family govern the large-N expansion (Bonzom, Gurau, Riello and Rivasseau 2011).
+
+## 3. Content
+
+| Header | Content |
+|---|---|
+| `cw_complex.hpp` | `Face{base, boundary}`, `Path` of `Step`; `CWComplex{name, vertices, edges, faces, higher, edge_names}` with `dimension`, `cells`, `counts`, `euler_characteristic`, `walk`, `one_skeleton`, `chain_complex`, `validate` |
+| `simplicial.hpp` | `SimplicialComplex::from_facets`, `find`, `facets`, `is_pure`, `cofaces`, `chain_complex`, `cw`, `link`, `star`, `skeleton`; `renumbered`, `barycentric_subdivision`, `join`, `cone`, `suspension` |
+| `constructions.hpp` | `parse_polygons`, `polygon_complex`; `orientable_surface`, `nonorientable_surface`, `klein_bottle`, `dunce_hat`, `sphere`, `real_projective_space`, `complex_projective_space`, `lens_space`, `presentation_complex`, `circle`, `interval`, `product`, `torus_lattice`; `simplex`, `simplex_boundary`, `torus_7`, `projective_plane_6`, `octahedron` |
+| `invariants.hpp` | `homology`, `betti`; `fundamental_group(X, base)` → `FundamentalGroup{presentation, generator_edges, loops, simplified, simplified_loops, abelianisation}` |
+| `surfaces.hpp` | `classify_surface(X)` → `SurfaceType{surface, closed, orientable, euler, genus, crosscaps, boundary_components, name, normal_form, reason, orientation}` |
+| `manifolds.hpp` | `manifold_type(K)` → `ManifoldType{dimension, pure, pseudomanifold, manifold, exact, closed, reason}` |
+| `collapse.hpp` | `collapse(X)` → `Collapse{attempted, collapsible, steps, moves, remaining, …}` |
+| `dual.hpp` | `dual_two_complex(K)` → `DualTwoComplex{complex, vertex_simplex, edge_simplex, face_simplex}` |
+| `coloured_graph.hpp` | `ColouredGraph{colours, p, sigma}` with `components`, `faces`, `face_count`, `bubbles`, `jacket_genera`, `degree`, `two_complex`, `dual_complex`; `elementary_melon`, `insert_melon`, `random_coloured_graph` |
+
+## 4. Checks
+
+`tests/check_topology.cpp`: the homology and classification of eleven complexes given by words (sphere, torus, genus 2, projective plane, Klein bottle, three crosscaps, Möbius band, annulus, disc, two tori on a common circle, two disjoint tori); π₁ of the torus with its loops; the H₂ generator of a lattice torus is its fundamental class Σ o_f f for the orientation found; ℝP⁵, ℂP³, S⁴ and L(5, q) with its π₁; ℝP² × S¹ against Künneth; lattice 3- and 4-tori (Betti numbers 1, 4, 6, 4, 1) and a 32 × 32 torus with its generators; the presentation complex of the (2, 3, 5) triangle group, whose π₁ has 121 homomorphisms into A₅; the 7-vertex torus, the 6-vertex projective plane, a barycentric subdivision, ∂Δ⁴ and a suspension recognised as 3-manifolds, a cone as a ball, two spheres on a point as a pseudomanifold only; collapses (a grid square and a disc collapse, the dunce hat and the torus do not); the dual 2-complexes of ∂Δ⁴ and of the 7-vertex torus; coloured graphs: the melon and melonic insertions encode S³, Gurau's face formula on random graphs, the surfaces of 3-coloured graphs have genus equal to their degree, and rooted melonic 4-coloured graphs are counted by the Fuss–Catalan numbers 1, 4, 22, 140.
+
+## 5. Dependencies
+
+morphe `algebra` (and through it `arithmetic`) and `combinatorics`.
+
+## 6. References
+
+- Hatcher, A. (2002), *Algebraic Topology*, Cambridge University Press.
+- Massey, W. S. (1991), *A Basic Course in Algebraic Topology*, Springer.
+- Spanier, E. H. (1966), *Algebraic Topology*, McGraw-Hill.
+- Munkres, J. R. (1984), *Elements of Algebraic Topology*, Addison-Wesley.
+- Rourke, C. P. and Sanderson, B. J. (1972), *Introduction to Piecewise-Linear Topology*, Springer.
+- Whitehead, J. H. C. (1939), Simplicial spaces, nuclei and m-groups, *Proc. London Math. Soc.* 45, 243–327.
+- Zeeman, E. C. (1964), On the dunce hat, *Topology* 2, 341–358.
+- Cohen, M. M. (1973), *A Course in Simple-Homotopy Theory*, Springer.
+- Gallier, J. and Xu, D. (2013), *A Guide to the Classification Theorem for Compact Surfaces*, Springer.
+- Pezzana, M. (1974), Sulla struttura topologica delle varietà compatte, *Atti Sem. Mat. Fis. Univ. Modena* 23, 269–277.
+- Ferri, M., Gagliardi, C. and Grasselli, L. (1986), A graph-theoretical representation of PL-manifolds, *Aequationes Math.* 31, 121–141.
+- Gurau, R. (2011), The 1/N expansion of colored tensor models, *Ann. Henri Poincaré* 12, 829–847.
+- Bonzom, V., Gurau, R., Riello, A. and Rivasseau, V. (2011), Critical behavior of colored tensor models in the large N limit, *Nucl. Phys. B* 853, 174–195.
+- Reisenberger, M. and Rovelli, C. (1997), "Sum over surfaces" form of loop quantum gravity, *Phys. Rev. D* 56, 3490–3508.
+- Oriti, D. (2001), Spacetime geometry from algebra: spin foam models for non-perturbative quantum gravity, *Rep. Prog. Phys.* 64, 1489–1544.
+
+## 7. Open Questions
+
+1. **Cup products and cohomology operations,** for the intersection forms and characteristic classes that gauge theory and quantum gravity ask for.
+2. **Collapses in dimension 3 and above,** and discrete Morse theory, which need regular complexes or more data than incidences.
+3. **Recognition of the 3-sphere** (Rubinstein and Thompson), to make manifold recognition exact in dimension 4.
+4. **Non-orientable coloured graphs** (non-bipartite), and the coloured graphs of a given manifold (crystallisations of minimal size).
+5. **Products and joins of simplicial complexes, and quotients by free actions,** which physis's `quantum_gravity` checks now build for themselves (staircase products ∂Δ³ × Cₙ for S² × S¹, joins of cycles and their quotients for lens spaces); and a test that a coloured graph encodes a manifold (all its bubbles spheres).

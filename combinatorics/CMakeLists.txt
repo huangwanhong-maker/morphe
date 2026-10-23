@@ -1,0 +1,7 @@
+add_library(morphe_combinatorics INTERFACE)
+add_library(morphe::combinatorics ALIAS morphe_combinatorics)
+target_include_directories(morphe_combinatorics INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_compile_features(morphe_combinatorics INTERFACE cxx_std_20)
+if(MORPHE_CHECKS)
+  morphe_add_check(check_morphe_combinatorics SOURCES tests/check_combinatorics.cpp LIBRARIES morphe::combinatorics)
+endif()

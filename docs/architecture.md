@@ -54,12 +54,16 @@ morphe depends on no other project library. In particular it does not depend on 
 | `algebraic_geometry` | `arithmetic`, `algebra` |
 | `formal` | `categories`, `equivalence`, `logic` |
 
+This is the planned order. Written so far (decision 0004): `arithmetic`; `algebra` on `arithmetic` alone, since `categories` and `equivalence` are not yet written; `combinatorics` on nothing; `topology` on `algebra` and `combinatorics`. When `categories` is written, the generic constructions that the first modules write for themselves (products of complexes, for instance) move there.
+
 - **Generic algorithms.** Generic equivalence algorithms live in `equivalence/`. Examples are canonical forms, partition refinement and coalgebra morphisms.
 - **Structure-specific algorithms.** An equivalence specific to one kind of structure lives in that structure's module and uses `equivalence/`. An example is homotopy equivalence of complexes.
 
 ## 3. Data Model (Provisional)
 
 Combinatorial structures may share one representation: C-sets, that is, functors from a small category to **Set**. Graphs, semi-simplicial sets, cell complexes, Petri nets and meshes would then all be instances of a single generic implementation ([idea](../development/ideas/2026-10-21-c-sets-as-common-data-model.md)).
+
+For now, CW complexes are explicit arrays (decision 0004, §2.4): vertices counted, each edge a (tail, head), each 2-cell a base vertex and an attaching word, each higher cell its incidences. The attaching words carry what a C-set over a plain schema cannot, the fundamental group and the holonomy of a gauge field.
 
 ## 4. Prior Art
 
@@ -81,8 +85,9 @@ Study these systems, but do not link to any GPL-licensed one.
 ```
 <module>/
 ├── README.md                 purpose, status, dependencies, references, open questions
+├── CMakeLists.txt            the target morphe::<module>, and its checks
 ├── include/morphe/<module>/  public headers
-├── src/                      implementation
-├── tests/                    unit tests
+├── src/                      implementation (when a module has code worth compiling once)
+├── tests/                    checks, printing the shared report through morphe/check.hpp
 └── bindings/python/          Python bindings (optional)
 ```

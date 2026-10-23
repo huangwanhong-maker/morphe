@@ -1,0 +1,8 @@
+add_library(morphe_topology INTERFACE)
+add_library(morphe::topology ALIAS morphe_topology)
+target_include_directories(morphe_topology INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_compile_features(morphe_topology INTERFACE cxx_std_20)
+target_link_libraries(morphe_topology INTERFACE morphe::algebra morphe::combinatorics)
+if(MORPHE_CHECKS)
+  morphe_add_check(check_morphe_topology SOURCES tests/check_topology.cpp LIBRARIES morphe::topology)
+endif()

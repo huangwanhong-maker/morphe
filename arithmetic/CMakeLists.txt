@@ -1,0 +1,7 @@
+add_library(morphe_arithmetic INTERFACE)
+add_library(morphe::arithmetic ALIAS morphe_arithmetic)
+target_include_directories(morphe_arithmetic INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_compile_features(morphe_arithmetic INTERFACE cxx_std_20)
+if(MORPHE_CHECKS)
+  morphe_add_check(check_morphe_arithmetic SOURCES tests/check_arithmetic.cpp LIBRARIES morphe::arithmetic)
+endif()
