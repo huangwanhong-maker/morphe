@@ -54,7 +54,7 @@ struct ColouredGraph {
   std::size_t edge(std::size_t c, std::size_t b) const { return c * p + b; }
 
   void validate() const {
-    if (colours < 2) throw std::invalid_argument("morphe::topology::ColouredGraph: at least two colours");
+    if (colours < 1) throw std::invalid_argument("morphe::topology::ColouredGraph: at least one colour");
     if (sigma.size() != colours) throw std::invalid_argument("morphe::topology::ColouredGraph: one permutation per colour");
     for (const auto& s : sigma) {
       if (s.size() != p) throw std::invalid_argument("morphe::topology::ColouredGraph: permutations of the p black vertices");

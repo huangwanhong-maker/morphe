@@ -31,6 +31,7 @@ Spaces built from cells, and what can be computed of them exactly. The 2-complex
 | `collapse.hpp` | `collapse(X)` → `Collapse{attempted, collapsible, steps, moves, remaining, …}` |
 | `dual.hpp` | `dual_two_complex(K)` → `DualTwoComplex{complex, vertex_simplex, edge_simplex, face_simplex}` |
 | `coloured_graph.hpp` | `ColouredGraph{colours, p, sigma}` with `components`, `faces`, `face_count`, `bubbles`, `jacket_genera`, `degree`, `two_complex`, `dual_complex`; `elementary_melon`, `insert_melon`, `random_coloured_graph` |
+| `bubbles.hpp` | bubbles, the interactions of invariant theories as bipartite r-coloured graphs: (φ̄φ)^k, (φ̄·φ)^k, tr(MM†)^k, the quadratic bubble, quartic melons, the wheel K₃,₃, the necklace; their automorphism groups; the gluing of bubbles by a propagator matching into (r+1)-coloured Feynman graphs (physis decision 0006) |
 
 ## 4. Checks
 
