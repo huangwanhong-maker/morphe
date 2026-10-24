@@ -13,5 +13,5 @@ A running record, for readers, of what each commit made possible or better. It i
 
 | Date | Commits |
 |---|---|
-| [2026-10-24](2026-10-24.md) | Cycles, Q-analysis and canonical forms; persistent homology over ℤ/2 |
+| [2026-10-24](2026-10-24.md) | Words, their indexes and their alignment; cycles, Q-analysis and canonical forms; persistent homology over ℤ/2 |
 | [2026-10-23](2026-10-23.md) | The interactions of field theories; exact algebra and the topology of complexes; logic and combinatorics in the plan |

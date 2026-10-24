@@ -21,11 +21,14 @@ The algebra that topology and physics need exactly: linear algebra over ℤ, the
 | `smith.hpp` | `smith(A, {U, V, U_inverse, V_inverse})` → `Smith{D, diagonal, U, V, U_inverse, V_inverse}`; `torsion`; `rank_mod(A, p)` |
 | `chain_complex.hpp` | `ChainComplex{n, boundary}` with `validate`, `euler_characteristic`; `reduce`; `homology(C, generators)` → `HomologyGroup{rank, torsion, free_generators, torsion_generators}`; `betti(C, p)`; `cohomology(H)` |
 | `presentation.hpp` | `Word`, `inverse`, `reduce`, `cyclic_reduce`, `canonical_cyclic`; `Presentation{generators, relators, names}`; `simplify` → `Simplified{presentation, kept}`; `abelianisation` → `AbelianGroup{rank, torsion}` |
+| `determinant.hpp` | `determinant(A)` over ℤ by Bareiss's fraction-free elimination with row exchanges (Bareiss 1968), every intermediate a minor; `minor_matrix`, `minor`; `determinant(n, entries)` over ℚ by clearing the denominators of each row |
 | `finite_group.hpp` | `FiniteGroup` (table, inverses, `evaluate`, `element_order`, `is_abelian`); `cyclic`, `dihedral`, `symmetric`, `alternating`, `quaternion`, `direct_product`, `permutation_group`; `conjugacy_classes`; `for_each_homomorphism`, `count_homomorphisms` |
 
 ## 4. Checks
 
 `tests/check_algebra.cpp`: a textbook Smith form; U A V = D, unimodularity and the divisibility chain on 300 random matrices, d₁ and d₁d₂ against gcds of minors; ranks modulo primes; the homology of 40 complexes built from known elementary pieces and disguised by random unimodular changes of basis, with generators that are cycles, free generators independent modulo boundaries, and Betti numbers mod 2 by universal coefficients; ℝP² with its torsion generator and its cohomology; Tietze simplification and abelianisation (surface groups, the Klein bottle); orders and class numbers of seven groups up to A₅; homomorphisms from the groups of the torus, the genus-2 surface, the projective plane and the Klein bottle into them against the formulas of Frobenius and Mednykh, with Frobenius–Schur indicators for the non-orientable ones.
+
+`tests/check_determinant.cpp`: Bareiss's elimination against the Leibniz expansion on random matrices with many zeros (so that pivots are exchanged); the sign of every permutation of five letters; multiplicativity on matrices whose determinants exceed 64 bits; Vandermonde's product; singular matrices; the Hilbert matrices over ℚ against det Hₙ = cₙ⁴ / c₂ₙ, cₙ = ∏_{i<n} i!; minors against the expansion along a row.
 
 ## 5. Dependencies
 

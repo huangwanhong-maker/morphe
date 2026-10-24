@@ -17,6 +17,7 @@ Combinatorial structures and their algorithms. The first is the graph, as the 1-
 | Header | Content |
 |---|---|
 | `graph.hpp` | `Multigraph{vertices, edges}` with `incidence`; `Step{edge, sign}`; `spanning_forest(G, first)` → `SpanningForest` with `path(u, v, G)`, `components`; `distances(G, source)` |
+| `eulerian.hpp` | Directed multigraphs: `degrees`, `edges_connected`, `eulerian_status` → `EulerianStatus{kind, start, end}`; `eulerian_circuit(G, first)` and `eulerian_trail(G)` by Hierholzer (1873); `for_each_eulerian_circuit`; `laplacian`, `count_arborescences(G, root)` by the matrix-tree theorem (Tutte 1948); `suppress_transit_vertices`; `count_eulerian_circuits` by the BEST theorem (van Aardenne-Ehrenfest and de Bruijn 1951; Smith and Tutte 1941) and `count_eulerian_trails`, exactly |
 | `canonical.hpp` | `LabelledGraph{vertex, edges}`; `canonical_form(G, limit)` → `CanonicalForm{code, automorphisms, exact, order}` |
 
 ## 4. Checks
@@ -25,9 +26,11 @@ Combinatorial structures and their algorithms. The first is the graph, as the 1-
 
 `tests/check_canonical.cpp` (15 checks): automorphism groups known by hand: the cycles C_3 to C_8 (2n), K_4 (24), the star K_{1,3} (6), the Petersen graph (120, where refinement splits nothing); labels and a doubled edge breaking symmetry; forty random relabellings of the Petersen graph sharing its code; the hexagon and two triangles, alike to colour refinement, told apart.
 
+`tests/check_eulerian.cpp` (14 checks): the matrix-tree theorem against Cayley's n^{n−2}, the complete bipartite m^{n−1} n^{m−1} and arborescences enumerated one by one on random multigraphs with loops and parallel edges; Hierholzer's circuits and trails, each edge once along a walk, and none where the degrees forbid one; the BEST theorem against every circuit enumerated on random Eulerian multigraphs; the de Bruijn graphs, whose circuits are the de Bruijn sequences, (σ!)^{σ^{n−1}} / σ^n of them, the binary ones 2^{2^{n−1} − n}; long cycles counted after their transit vertices are suppressed.
+
 ## 5. Dependencies
 
-None.
+morphe `algebra` (the determinant, for the matrix-tree and BEST theorems) and `arithmetic` (exact counts), since decision 0005; before it, none.
 
 ## 6. References
 
