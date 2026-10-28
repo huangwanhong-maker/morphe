@@ -27,6 +27,7 @@ Formal structures: words and the structures built on them. This first slice serv
 | `aho_corasick.hpp` | `AhoCorasick(patterns, σ)`: goto, failure and output functions, the deterministic automaton δ, and every occurrence in one pass (Aho and Corasick 1975) |
 | `semiring.hpp` | Semirings as a C++20 concept; Boolean, (max, +) and (min, +) over integers (exact, or refused at their infinities), counting over ℕ on `Integer`, the tropical semiring with multiplicities, products; semiring homomorphisms (`SemiringMorphism`: forgetting multiplicities, the embedding of ℕ, negation, support, projections) and the laws checked on samples |
 | `alignment.hpp` | The edit graph of two words and the sum over its paths in any semiring, global, local, semiglobal and overlap, linear and three-state affine schemes, traceback in selective semirings, enumeration of every path, Delannoy numbers |
+| `graph_rewriting.hpp` | Double-pushout rewriting of labelled graphs with relabelling (Habel and Plump 2002), in `morphe::formal::rewriting`: `Graph`, `Rule` (K's correspondences, `"*"` schemas, an application condition); injective matches and `automorphisms`; `dangling_ok`, `apply` with the trace of vertices, `derivations`; classes `code` (component by component) and `rule_code`; label permutations `Relabelling`, `closed_under`, `equivariant`; `explore` (derivation spaces with counted derivations) and `orbits` ([decision 0007](../development/decisions/0007-graph-rewriting.md)) |
 | `polytope.hpp` | The polytope algebra of lattice polygons (exact hulls, Minkowski sums), support functions as homomorphisms to (max, +), normal fans, polytope propagation: the alignment polygon with a witness and a cone for each vertex |
 
 ## 4. Dependencies
@@ -46,6 +47,7 @@ Every `tests/check_<topic>.cpp` is a check program `check_morphe_formal_<topic>`
 | `check_semiring` | The laws of every semiring on samples; the homomorphisms, and a map that is not one refused; exactness at the infinities |
 | `check_alignment` | The generic programme against the enumeration of every path in five semirings, all modes and both gap models; Delannoy numbers up to D(60, 60) exactly; Durbin et al.'s example |
 | `check_polytope` | Hulls, the laws of the algebra, Minkowski sums against pairwise sums, evaluation as a homomorphism; the alignment polygon equal to the hull of the enumerated vectors; witnesses and cones; the vertex of the longest common subsequence |
+| `check_graph_rewriting` | Automorphisms of familiar graphs; matches as \|Aut L\| times occurrences; the dangling condition and relabelling; string rewriting and graph rewriting on paths agreeing on 300 random forms; n!(n − 1)! derivations of chains, one orbit, equivariant; exact classes of graphs of many identical parts; closure needed for equivariance |
 | `check_formal` | Every header of the module compiles in one translation unit |
 
 ## 6. References

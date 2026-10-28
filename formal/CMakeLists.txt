@@ -3,7 +3,7 @@ add_library(morphe_formal INTERFACE)
 add_library(morphe::formal ALIAS morphe_formal)
 target_include_directories(morphe_formal INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_compile_features(morphe_formal INTERFACE cxx_std_20)
-target_link_libraries(morphe_formal INTERFACE morphe::arithmetic)
+target_link_libraries(morphe_formal INTERFACE morphe::arithmetic morphe::combinatorics)
 if(MORPHE_CHECKS)
   # Every tests/check_<topic>.cpp is a check program, check_morphe_formal_<topic>.
   file(GLOB formal_checks CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_*.cpp)
