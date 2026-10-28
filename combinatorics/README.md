@@ -1,6 +1,6 @@
 # combinatorics: Graphs and Combinatorial Structures
 
-*Status: draft (2026-10-24): multigraphs, spanning forests, paths and distances; canonical forms and automorphism groups of labelled multigraphs.* Enumeration and generating functions, designs, graphs and hypergraphs as C-sets, flows, matchings, colourings, isomorphism with pruning by automorphisms, matroids, exact combinatorial optimisation and the enumeration of Feynman graphs with their automorphisms are planned ([decision 0003](../development/decisions/0003-logic-and-combinatorics.md), [decision 0004](../development/decisions/0004-the-first-slice-cell-complexes.md)).
+*Status: draft (2026-10-24): multigraphs, spanning forests, paths and distances; canonical forms and automorphism groups of labelled multigraphs; longest and heaviest increasing subsequences.* Enumeration and generating functions, designs, graphs and hypergraphs as C-sets, flows, matchings, colourings, isomorphism with pruning by automorphisms, matroids, exact combinatorial optimisation and the enumeration of Feynman graphs with their automorphisms are planned ([decision 0003](../development/decisions/0003-logic-and-combinatorics.md), [decision 0004](../development/decisions/0004-the-first-slice-cell-complexes.md)).
 
 ## 1. Purpose
 
@@ -19,6 +19,7 @@ Combinatorial structures and their algorithms. The first is the graph, as the 1-
 | `graph.hpp` | `Multigraph{vertices, edges}` with `incidence`; `Step{edge, sign}`; `spanning_forest(G, first)` → `SpanningForest` with `path(u, v, G)`, `components`; `distances(G, source)` |
 | `eulerian.hpp` | Directed multigraphs: `degrees`, `edges_connected`, `eulerian_status` → `EulerianStatus{kind, start, end}`; `eulerian_circuit(G, first)` and `eulerian_trail(G)` by Hierholzer (1873); `for_each_eulerian_circuit`; `laplacian`, `count_arborescences(G, root)` by the matrix-tree theorem (Tutte 1948); `suppress_transit_vertices`; `count_eulerian_circuits` by the BEST theorem (van Aardenne-Ehrenfest and de Bruijn 1951; Smith and Tutte 1941) and `count_eulerian_trails`, exactly |
 | `canonical.hpp` | `LabelledGraph{vertex, edges}`; `canonical_form(G, limit)` → `CanonicalForm{code, automorphisms, exact, order}` |
+| `increasing.hpp` | `heaviest_increasing_subsequence(v, w)` and `longest_increasing_subsequence(v)`, strictly increasing, in O(n log n) by a Fenwick tree of prefix maxima (Fredman 1975; Jacobson and Vo 1992); `heaviest_chain(x, y, w)`, chains of points strictly increasing in both coordinates; ties broken by least index, so the answer is a function of the input. The genomics domain chains the maximal unique matches of two genomes with it |
 
 ## 4. Checks
 
@@ -27,6 +28,8 @@ Combinatorial structures and their algorithms. The first is the graph, as the 1-
 `tests/check_canonical.cpp` (15 checks): automorphism groups known by hand: the cycles C_3 to C_8 (2n), K_4 (24), the star K_{1,3} (6), the Petersen graph (120, where refinement splits nothing); labels and a doubled edge breaking symmetry; forty random relabellings of the Petersen graph sharing its code; the hexagon and two triangles, alike to colour refinement, told apart.
 
 `tests/check_eulerian.cpp` (14 checks): the matrix-tree theorem against Cayley's n^{n−2}, the complete bipartite m^{n−1} n^{m−1} and arborescences enumerated one by one on random multigraphs with loops and parallel edges; Hierholzer's circuits and trails, each edge once along a walk, and none where the degrees forbid one; the BEST theorem against every circuit enumerated on random Eulerian multigraphs; the de Bruijn graphs, whose circuits are the de Bruijn sequences, (σ!)^{σ^{n−1}} / σ^n of them, the binary ones 2^{2^{n−1} − n}; long cycles counted after their transit vertices are suppressed.
+
+`tests/check_increasing.cpp` (9 checks): the heaviest increasing subsequence against every subsequence enumerated on 3000 short sequences with repeated values and weights of both signs, and against the quadratic recurrence on sequences of up to 3000 terms; the longest with unit weights; chains of points with ties in both coordinates against the quadratic recurrence; the theorem of Erdős and Szekeres (1935) on random permutations of rs + 1 terms, and its sharpness on r decreasing blocks of s.
 
 ## 5. Dependencies
 
@@ -39,6 +42,10 @@ morphe `algebra` (the determinant, for the matrix-tree and BEST theorems) and `a
 - Patterson, E., Lynch, O. and Fairbanks, J. (2022), Categorical data structures for technical computing, *Compositionality* 4, 5.
 - Weisfeiler, B. and Leman, A. (1968), The reduction of a graph to canonical form and the algebra which appears therein, *Nauchno-Technicheskaya Informatsia* 2(9), 12–16.
 - McKay, B. D. and Piperno, A. (2014), Practical graph isomorphism, II, *J. Symbolic Comput.* 60, 94–112.
+- Fredman, M. L. (1975), On computing the length of longest increasing subsequences, *Discrete Math.* 11, 29–35.
+- Jacobson, G. and Vo, K.-P. (1992), Heaviest increasing/common subsequence problems, *Combinatorial Pattern Matching (CPM 1992)*, LNCS 644.
+- Fenwick, P. M. (1994), A new data structure for cumulative frequency tables, *Software: Practice and Experience* 24, 327–336.
+- Erdős, P. and Szekeres, G. (1935), A combinatorial problem in geometry, *Compositio Math.* 2, 463–470.
 
 ## 7. Open Questions
 

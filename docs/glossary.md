@@ -14,6 +14,8 @@
 | Boundary of an edge | head − tail. | `CWComplex::chain_complex` |
 | Strict or up to isomorphism | Constructions are strict (they return explicit cells); every comparison of results states its category (isomorphism of groups, homotopy, simple homotopy). | — |
 | Division of integers | Truncated toward zero; `mod` and `floor_div` give the Euclidean pair. | `Integer` |
+| Fourier transform on a finite group | f̂(ρ) = Σ_g f(g) ρ(g), with no conjugate (Diaconis 1988), so that the product of K[G] goes to the product of matrices; for C_{n_1} × ⋯ × C_{n_k}, f̂(y) = Σ_x f(x) ζ_N^{⟨x, y⟩}, the transform with kernel exp(−2πi x y/n) being f̂(−y). | `SnFourier`, `AbelianFourier` |
+| Complex values of cyclotomic numbers | ζ_m = exp(2πi/m), for display only; exact work never leaves ℚ(ζ_m). | `Cyclotomic::to_complex` |
 
 ## 2. Notation
 
@@ -35,3 +37,14 @@
 | g_J, ω | genus of a jacket, Gurau's degree Σ g_J | `jacket_genera`, `degree` |
 | X_s, s(c) | the sub-complex at stage s of a filtration, the stage of a cell | `Filtration` |
 | [b, d) | an interval of persistence: a class of H_k over ℤ/2 born at stage b and dying at d (or never) | `PersistenceInterval` |
+| ℚ(ζ_m), Φ_m, φ(m) | the m-th cyclotomic field ℚ[x]/(Φ_m), the m-th cyclotomic polynomial, Euler's totient | `Cyclotomic`, `cyclotomic_polynomial`, `euler_phi` |
+| σ_k | the automorphism ζ ↦ ζ^k of ℚ(ζ_m), gcd(k, m) = 1; σ_{−1} is complex conjugation | `Cyclotomic::galois`, `Cyclotomic::conj` |
+| K_j, h_j, g_j, C_j | a conjugacy class, its size, its representative (its least element), its class sum | `CharacterTable::classes`, `::class_sizes`, `::representatives` |
+| χ (of a group), χ(1) | an irreducible complex character, its degree (not the Euler characteristic) | `CharacterTable::values`, `::degree` |
+| ω_χ, a_{jkl} | the central character h_j χ(g_j)/χ(1); the class coefficients, C_j C_k = Σ_l a_{jkl} C_l | `class_multiplication_coefficients` |
+| ν(χ) | the Frobenius–Schur indicator (1/\|G\|) Σ_g χ(g²) | `frobenius_schur` |
+| K[G], e_χ | the group algebra; the central primitive idempotent (χ(1)/\|G\|) Σ_g χ(g⁻¹) g | `GroupAlgebra`, `central_idempotent` |
+| λ ⊢ n, ρ_λ, d_λ | a partition of n, the irreducible representation of S_n it indexes (Young's seminormal form), its dimension | `Partition`, `SeminormalRep`, `hook_length_dimension` |
+| s_i, c_T(k) | the Coxeter generator (i i+1) of S_n, 0-based; the content (column − row) of the cell of k in a tableau T | `SeminormalRep::generator`, `::content` |
+| f̂(λ), E^λ_{ST} | the Fourier transform Σ_σ f(σ) ρ_λ(σ); the matrix units of ℚ[S_n], inverse transforms of e_{ST} | `SnFourier::transform`, `::matrix_unit` |
+| ⟨x, y⟩, χ_y | the pairing Σ_i x_i y_i N/n_i on C_{n_1} × ⋯ × C_{n_k}, N = lcm n_i; the character ζ_N^{⟨x, y⟩} | `AbelianFourier::pairing`, `::character` |

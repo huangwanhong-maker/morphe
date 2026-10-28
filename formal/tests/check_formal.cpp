@@ -6,9 +6,16 @@
 #include <morphe/check.hpp>
 #include <morphe/formal/aho_corasick.hpp>
 #include <morphe/formal/alignment.hpp>
+#include <morphe/formal/breaking.hpp>
 #include <morphe/formal/bwt.hpp>
+#include <morphe/formal/earley.hpp>
+#include <morphe/formal/equivariant.hpp>
 #include <morphe/formal/fm_index.hpp>
+#include <morphe/formal/grammar.hpp>
+#include <morphe/formal/inside_outside.hpp>
+#include <morphe/formal/pbwt.hpp>
 #include <morphe/formal/polytope.hpp>
+#include <morphe/formal/r_index.hpp>
 #include <morphe/formal/semiring.hpp>
 #include <morphe/formal/succinct.hpp>
 #include <morphe/formal/suffix_array.hpp>

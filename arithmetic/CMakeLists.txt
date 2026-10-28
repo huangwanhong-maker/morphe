@@ -4,4 +4,5 @@ target_include_directories(morphe_arithmetic INTERFACE ${CMAKE_CURRENT_SOURCE_DI
 target_compile_features(morphe_arithmetic INTERFACE cxx_std_20)
 if(MORPHE_CHECKS)
   morphe_add_check(check_morphe_arithmetic SOURCES tests/check_arithmetic.cpp LIBRARIES morphe::arithmetic)
+  morphe_add_check(check_morphe_cyclotomic SOURCES tests/check_cyclotomic.cpp LIBRARIES morphe::arithmetic)
 endif()

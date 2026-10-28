@@ -54,7 +54,7 @@ morphe depends on no other project library. In particular it does not depend on 
 | `algebraic_geometry` | `arithmetic`, `algebra` |
 | `formal` | `arithmetic`, `categories`, `equivalence`, `logic` |
 
-This is the planned order. Written so far (decision 0004): `arithmetic`; `algebra` on `arithmetic` alone, since `categories` and `equivalence` are not yet written; `combinatorics` on nothing until decision 0005 joined it to `algebra` and `arithmetic` (the matrix-tree and BEST theorems count by determinants over ℤ); `topology` on `algebra` and `combinatorics`; `formal` on `arithmetic` (decision 0005). When `categories` is written, the generic constructions that the first modules write for themselves (products of complexes, for instance) move there.
+This is the planned order. Written so far (decision 0004): `arithmetic`; `algebra` on `arithmetic` alone, since `categories` and `equivalence` are not yet written; `combinatorics` on nothing until decision 0005 joined it to `algebra` and `arithmetic` (the matrix-tree and BEST theorems count by determinants over ℤ); `topology` on `algebra` and `combinatorics`; `formal` on `arithmetic` (decision 0005), and on `algebra` since decision 0006, whose grammars with symmetry need finite groups and their actions. When `categories` is written, the generic constructions that the first modules write for themselves (products of complexes, for instance) move there.
 
 - **Generic algorithms.** Generic equivalence algorithms live in `equivalence/`. Examples are canonical forms, partition refinement and coalgebra morphisms.
 - **Structure-specific algorithms.** An equivalence specific to one kind of structure lives in that structure's module and uses `equivalence/`. An example is homotopy equivalence of complexes.
