@@ -13,6 +13,7 @@ A running record, for readers, of what each commit made possible or better. It i
 
 | Date | Commits |
 |---|---|
+| [2026-10-31](2026-10-31.md) | Regular complexes and their rewriting, traces, and Möbius inversion |
 | [2026-10-30](2026-10-30.md) | Contributors, their terms, and a steward |
 | [2026-10-29](2026-10-29.md) | Representations of finite groups, and grammars with symmetry; graph rewriting by double pushouts, with relabelling |
 | [2026-10-24](2026-10-24.md) | Worldlines; words, their indexes and their alignment; cycles, Q-analysis and canonical forms; persistent homology over ℤ/2 |

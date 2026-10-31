@@ -16,6 +16,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0005](0005-words-their-indexes-and-their-alignment.md) | Words, their indexes, and their alignment over semirings | Accepted |
 | [0006](0006-representations-and-grammars-with-symmetry.md) | Representations of finite groups, and grammars with symmetry | Accepted |
 | [0007](0007-graph-rewriting.md) | Graph rewriting by double pushouts, with relabelling | Accepted, provisionally |
+| [0008](0008-regular-complexes-rewriting-traces-and-mobius.md) | Regular complexes and their rewriting, traces, and Möbius inversion | Accepted, provisionally |
 
 ## 2. Template
 
