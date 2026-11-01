@@ -13,6 +13,7 @@ A running record, for readers, of what each commit made possible or better. It i
 
 | Date | Commits |
 |---|---|
+| [2026-11-01](2026-11-01.md) | Grammars written in BNF, and the diagnosis of a rejected text |
 | [2026-10-31](2026-10-31.md) | Regular complexes and their rewriting, traces, and Möbius inversion |
 | [2026-10-30](2026-10-30.md) | Contributors, their terms, and a steward |
 | [2026-10-29](2026-10-29.md) | Representations of finite groups, and grammars with symmetry; graph rewriting by double pushouts, with relabelling |

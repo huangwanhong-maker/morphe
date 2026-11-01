@@ -17,6 +17,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0006](0006-representations-and-grammars-with-symmetry.md) | Representations of finite groups, and grammars with symmetry | Accepted |
 | [0007](0007-graph-rewriting.md) | Graph rewriting by double pushouts, with relabelling | Accepted, provisionally |
 | [0008](0008-regular-complexes-rewriting-traces-and-mobius.md) | Regular complexes and their rewriting, traces, and Möbius inversion | Accepted, provisionally |
+| [0009](0009-grammars-written-in-bnf.md) | Grammars written in BNF over bytes, and the diagnostics of Earley's chart | Accepted, provisionally |
 
 ## 2. Template
 

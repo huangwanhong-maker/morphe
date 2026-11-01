@@ -16,12 +16,21 @@
 //
 // Every item remembers one way it was made, so that one parse tree of w is read back from the
 // accepting item; ε-subtrees of nullable nonterminals come from a fixed derivation of ε each.
+//
+// Diagnostics. S_j is non-empty exactly when w_{1..j} is a viable prefix, S ⇒* w_{1..j} γ for
+// some sentential form γ; when every nonterminal is productive, exactly when w_{1..j} is a
+// prefix of a word of L. A rejected word's furthest viable prefix is therefore the largest j with
+// S_j ≠ ∅, and the terminals that may follow it are those after the dots of S_j's items: the
+// chart states exactly how far the word is right and what it lacks, which is what a reader of
+// an error needs.
 
 #pragma once
 
+#include <algorithm>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
+#include <utility>
 #include <stdexcept>
 #include <unordered_map>
 #include <vector>
@@ -42,6 +51,9 @@ struct EarleyResult {
   bool accepts = false;
   std::size_t items = 0;  // the size of the chart, Σ_j |S_j|
   ParseTree tree;         // one parse, when accepted and asked for
+  std::size_t furthest = 0;               // the length of the longest viable prefix of w
+  std::vector<Symbol> expected;           // the terminals that may follow it, ascending
+  std::vector<std::pair<std::uint32_t, std::uint32_t>> frontier;  // (rule, dot) of the items awaiting them
 };
 
 namespace detail {
@@ -92,7 +104,9 @@ class Earley {
     }
   }
 
-  EarleyResult parse(const std::vector<Symbol>& w, bool want_tree = false) const {
+  // Parses w from the start S (nonterminal 0), or from the nonterminal of index `start`.
+  EarleyResult parse(const std::vector<Symbol>& w, bool want_tree = false, std::size_t start = 0) const {
+    if (start >= g_.nonterminals.size()) throw std::invalid_argument("morphe::formal::Earley: no such start");
     const std::size_t n = w.size();
     std::vector<std::vector<detail::EarleyItem>> sets(n + 1);
     std::vector<std::vector<detail::Back>> backs(n + 1);
@@ -103,7 +117,7 @@ class Earley {
       sets[j].push_back(it);
       backs[j].push_back(b);
     };
-    for (std::uint32_t r : by_lhs_[0]) add(0, {r, 0, 0}, {});
+    for (std::uint32_t r : by_lhs_[start]) add(0, {r, 0, 0}, {});
     for (std::size_t j = 0; j <= n; j++) {
       for (std::size_t k = 0; k < sets[j].size(); k++) {
         const detail::EarleyItem it = sets[j][k];
@@ -138,9 +152,23 @@ class Earley {
     }
     EarleyResult out;
     for (const auto& s : sets) out.items += s.size();
+    for (std::size_t j = 0; j <= n; j++)
+      if (!sets[j].empty()) out.furthest = j;
+    for (const auto& it : sets[out.furthest]) {
+      const auto& rhs = g_.rules[it.rule].rhs;
+      if (it.dot < rhs.size() && g_.terminal(rhs[it.dot])) {
+        out.expected.push_back(rhs[it.dot]);
+        out.frontier.emplace_back(it.rule, it.dot);
+      }
+    }
+    std::sort(out.expected.begin(), out.expected.end());
+    out.expected.erase(std::unique(out.expected.begin(), out.expected.end()), out.expected.end());
+    std::sort(out.frontier.begin(), out.frontier.end());
+    out.frontier.erase(std::unique(out.frontier.begin(), out.frontier.end()), out.frontier.end());
+    const Symbol goal = g_.nonterminal(start);
     for (std::size_t k = 0; k < sets[n].size(); k++) {
       const auto& it = sets[n][k];
-      if (it.origin == 0 && it.dot == g_.rules[it.rule].rhs.size() && g_.rules[it.rule].lhs[0] == g_.start()) {
+      if (it.origin == 0 && it.dot == g_.rules[it.rule].rhs.size() && g_.rules[it.rule].lhs[0] == goal) {
         out.accepts = true;
         if (want_tree) out.tree = build(sets, backs, n, k);
         break;
