@@ -18,13 +18,15 @@
 // infrastructure's history complex (its theory note §2), whose occasions, beings and ties are
 // the events, participants and pairs; the economics domain's spacetime complex of transactions is
 // another. Each pair's meetings must be events both attend, in increasing order; a participant
-// attends an event at most once. O(cells) but for the triangles, O(Σ_v m_v³) for m_v pairs meeting
-// at event v.
+// attends an event at most once. O(cells) but for the triangles, found through the participants' incidences:
+// O(Σ_v Σ_{pairs i at v} d_i · d̄) for d_i the pairs at v sharing an end with i and d̄ those at the third participant,
+// at most O(Σ_v m_v³) for m_v pairs meeting at event v, and near O(Σ_v m_v) when few pairs share an end.
 
 #pragma once
 
 #include <morphe/topology/cw_complex.hpp>
 
+#include <algorithm>
 #include <array>
 #include <cstddef>
 #include <map>
@@ -171,19 +173,42 @@ inline RefinedWorldlines refined_worldlines(const Encounters& R, const Worldline
     for (std::size_t k = 0; k < R.pairs[t].meetings.size(); k++) at[R.pairs[t].meetings[k]].push_back({t, k});
   for (std::size_t v = 0; v < V; v++) {
     const auto& here = at[v];
-    for (std::size_t i = 0; i < here.size(); i++)
-      for (std::size_t j = i + 1; j < here.size(); j++)
-        for (std::size_t k = j + 1; k < here.size(); k++) {
+    // The triples i < j < k of pairs meeting here that join three participants pairwise, found through the
+    // participants' incidences rather than by trying every triple: from pair i = {a, b}, a later pair j sharing
+    // exactly one of its ends reaches a third participant c, and a still later pair k must join c to the end of i
+    // that j left. Each triangle is found once, from its first pair and its second; the triples are then taken in
+    // lexicographic order, the order of the three nested loops this replaces.
+    std::map<std::size_t, std::vector<std::size_t>> incident;  // participant -> indices into `here`, increasing
+    for (std::size_t i = 0; i < here.size(); i++) {
+      incident[R.pairs[here[i].first].a].push_back(i);
+      incident[R.pairs[here[i].first].b].push_back(i);
+    }
+    const auto other = [&](std::size_t i, std::size_t x) { const auto& pr = R.pairs[here[i].first]; return pr.a == x ? pr.b : pr.a; };
+    std::vector<std::array<std::size_t, 3>> triples;
+    for (std::size_t i = 0; i < here.size(); i++) {
+      const std::size_t a = R.pairs[here[i].first].a, b = R.pairs[here[i].first].b;
+      if (a == b) continue;
+      for (const std::size_t end : {a, b}) {
+        const std::size_t left = end == a ? b : a;
+        for (const std::size_t j : incident[end]) {
+          if (j <= i) continue;
+          const std::size_t c = other(j, end);
+          if (c == a || c == b) continue;
+          for (const std::size_t k : incident[c]) {
+            if (k <= j) continue;
+            if (other(k, c) == left) triples.push_back({i, j, k});
+          }
+        }
+      }
+    }
+    std::sort(triples.begin(), triples.end());
+    for (const auto& [i, j, k] : triples) {
           const std::array<std::pair<std::size_t, std::size_t>, 3> three{here[i], here[j], here[k]};
           std::map<std::size_t, int> degree;
           for (const auto& [t, g] : three) {
             degree[R.pairs[t].a]++;
             degree[R.pairs[t].b]++;
           }
-          if (degree.size() != 3) continue;
-          bool cycle = true;
-          for (const auto& d : degree) cycle = cycle && d.second == 2;
-          if (!cycle) continue;
           RefinedWorldlines::Triangle T;
           T.event = v;
           std::size_t q = 0;

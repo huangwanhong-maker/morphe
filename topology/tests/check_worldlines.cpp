@@ -11,7 +11,10 @@
 #include <morphe/topology/invariants.hpp>
 #include <morphe/topology/worldlines.hpp>
 
+#include <algorithm>
+#include <array>
 #include <cstdint>
+#include <map>
 #include <random>
 #include <string>
 #include <vector>
@@ -121,6 +124,65 @@ int main() {
     s.require("sixty random records: both complexes valid (closed words, ∂∂ = 0)", all_valid);
     s.require("... with the cells the construction makes", counts);
     s.require("... every lens word its two paths (and two rungs refined), every triangle three rungs", words);
+  }
+  // The triangles found through the incidences are those of every triple tried, in the same order, on random
+  // records with parallel pairs (two pairs joining the same two participants) and crowded events.
+  {
+    std::mt19937_64 rng(20261104);
+    bool same = true;
+    std::size_t found = 0;
+    for (int trial = 0; trial < 40; trial++) {
+      mt::Encounters R;
+      R.participants = 3 + rng() % 7;
+      const std::size_t events = 1 + rng() % 6;
+      for (std::size_t v = 0; v < events; v++) {
+        std::vector<std::size_t> here;
+        for (std::size_t x = 0; x < R.participants; x++)
+          if (rng() % 4) here.push_back(x);
+        R.present.push_back(here);
+      }
+      const std::size_t pairs = 4 + rng() % 24;
+      for (std::size_t q = 0; q < pairs; q++) {
+        const std::size_t a = rng() % R.participants, b = rng() % R.participants;
+        if (a == b) continue;
+        mt::Encounters::Pair p{a, b, {}};
+        for (std::size_t v = 0; v < events; v++) {
+          bool ha = false, hb = false;
+          for (std::size_t x : R.present[v]) { ha = ha || x == a; hb = hb || x == b; }
+          if (ha && hb && rng() % 3) p.meetings.push_back(v);
+        }
+        R.pairs.push_back(p);
+      }
+      const auto W = mt::worldline_complex(R);
+      const auto F = mt::refined_worldlines(R, W);
+      // Every triple, as the construction once tried them.
+      std::vector<std::array<std::size_t, 7>> brute;  // event, pairs, meetings
+      for (std::size_t v = 0; v < events; v++) {
+        std::vector<std::pair<std::size_t, std::size_t>> here;
+        for (std::size_t t = 0; t < R.pairs.size(); t++)
+          for (std::size_t k = 0; k < R.pairs[t].meetings.size(); k++)
+            if (R.pairs[t].meetings[k] == v) here.push_back({t, k});
+        for (std::size_t i = 0; i < here.size(); i++)
+          for (std::size_t j = i + 1; j < here.size(); j++)
+            for (std::size_t k = j + 1; k < here.size(); k++) {
+              std::map<std::size_t, int> degree;
+              for (const auto& [t, g] : {here[i], here[j], here[k]}) degree[R.pairs[t].a]++, degree[R.pairs[t].b]++;
+              bool cycle = degree.size() == 3;
+              for (const auto& d : degree) cycle = cycle && d.second == 2;
+              if (cycle) brute.push_back({v, here[i].first, here[j].first, here[k].first, here[i].second, here[j].second, here[k].second});
+            }
+      }
+      std::vector<std::array<std::size_t, 7>> fast;
+      for (const auto& T : F.triangles) {
+        // The pairs in the order they met, as the triple was taken.
+        std::array<std::pair<std::size_t, std::size_t>, 3> m{{{T.pairs[0], T.meetings[0]}, {T.pairs[1], T.meetings[1]}, {T.pairs[2], T.meetings[2]}}};
+        std::sort(m.begin(), m.end());
+        fast.push_back({T.event, m[0].first, m[1].first, m[2].first, m[0].second, m[1].second, m[2].second});
+      }
+      same = same && fast == brute && valid(F.cw);
+      found += fast.size();
+    }
+    s.require("forty random records with parallel pairs: the triangles are those of every triple, in order (" + std::to_string(found) + " found)", same && found > 0);
   }
   // Faulty records.
   {
