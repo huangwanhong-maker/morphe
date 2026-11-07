@@ -13,6 +13,7 @@ A running record, for readers, of what each commit made possible or better. It i
 
 | Date | Commits |
 |---|---|
+| [2026-11-07](2026-11-07.md) | Shortest paths |
 | [2026-11-04](2026-11-04.md) | Surfaces given as lists of triangles; the triangles of a refined worldline complex, found through incidences |
 | [2026-11-01](2026-11-01.md) | Grammars written in BNF, and the diagnosis of a rejected text |
 | [2026-10-31](2026-10-31.md) | Regular complexes and their rewriting, traces, and Möbius inversion |
