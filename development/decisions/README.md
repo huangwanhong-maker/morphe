@@ -20,6 +20,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0009](0009-grammars-written-in-bnf.md) | Grammars written in BNF over bytes, and the diagnostics of Earley's chart | Accepted, provisionally |
 | [0010](0010-surfaces-given-as-triangles.md) | Surfaces given as lists of triangles: their complexes read directly, their components, and their orientation | Accepted, provisionally |
 | [0011](0011-shortest-paths.md) | Shortest paths | Accepted, provisionally |
+| [0012](0012-centralities.md) | Centralities: closeness and betweenness within a radius | Accepted, provisionally |
 
 ## 2. Template
 
