@@ -22,6 +22,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0011](0011-shortest-paths.md) | Shortest paths | Accepted, provisionally |
 | [0012](0012-centralities.md) | Centralities: closeness and betweenness within a radius | Accepted, provisionally |
 | [0013](0013-categories-as-objects-of-study-in-kategoria.md) | Categories as objects of study are kategoria's; morphe's `categories` is narrowed to the constructions its modules share | Accepted, provisionally |
+| [0014](0014-braid-groups.md) | Braid groups (the word problem, Dynnikov's coordinates, Burau's representation), and Laurent polynomials | Accepted, provisionally |
 
 ## 2. Template
 

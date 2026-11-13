@@ -2,6 +2,8 @@
 
 *Status: draft (2026-10-24): integers, rationals, residues and the cyclotomic fields.* Other algebraic numbers, polynomial rings, factorisation and lattices of ℤⁿ are planned ([decision 0004](../development/decisions/0004-the-first-slice-cell-complexes.md), §2.1).
 
+*New (2026-11-13):* Laurent polynomials ℤ[t, t⁻¹] in one variable, exact, over which the Burau representation of the braid groups is written (`algebra/braid.hpp`; [decision 0014](../development/decisions/0014-braid-groups.md)).
+
 *New (2026-10-24):* the cyclotomic fields ℚ(ζ_m), exactly, in which the characters of every finite group take their values (`algebra/characters.hpp`).
 
 ## 1. Purpose
@@ -23,6 +25,7 @@ The numbers on which every exact structure of morphe is built: the integers ℤ 
 | `integer.hpp` | `Integer`: parsing and decimal text, `+ - * / %`, `divmod`, comparisons, `bit_length`, `to_double`; `abs`, `mod`, `floor_div`, `exact_div`, `gcd`, `extended_gcd`, `pow`, `factorial`, `double_factorial`, `binomial`; `std::hash<Integer>` |
 | `rational.hpp` | `Rational`: arithmetic, comparisons, `parse`, `str`, `to_double` accurate for parts of any size; `abs`, `pow` |
 | `modular.hpp` | `mod_add`, `mod_sub`, `mod_mul`, `mod_pow`, `mod_inverse`, `residue`, `is_prime` |
+| `laurent.hpp` | `Laurent`: a finite sum Σ c_k tᵏ over k ∈ ℤ with coefficients in ℤ without bound; `monomial(c, k)`, `t(k)`, `coefficient(k)`, `lowest`, `highest`, `+ − ×`, `==`, `normalised()` (the representative up to the units ±tᵏ: lowest exponent 0, lowest coefficient positive, as an Alexander polynomial is written), its text. Checked with the braids (`algebra/tests/check_braid.cpp`) |
 | `cyclotomic.hpp` | `euler_phi`, `cyclotomic_polynomial`; `Cyclotomic`: `zeta(m, k)`, `from_powers`, `from_basis`, `+ − × /`, `inverse`, `power`, `==`, `conj`, `galois(k)`, `lift(M)`, `coefficients_in(M)`, `field`, `is_rational`, `to_rational`, `to_complex` (display only), `str` |
 
 ## 4. Checks

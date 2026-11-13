@@ -13,6 +13,7 @@ A running record, for readers, of what each commit made possible or better. It i
 
 | Date | Commits |
 |---|---|
+| [2026-11-13](2026-11-13.md) | Braid groups: the word problem, curves on a punctured disc, Burau's representation; Laurent polynomials |
 | [2026-11-12](2026-11-12.md) | Where category theory lives: kategoria, on morphe |
 | [2026-11-08](2026-11-08.md) | Centralities: closeness and betweenness within a radius |
 | [2026-11-07](2026-11-07.md) | Shortest paths |
