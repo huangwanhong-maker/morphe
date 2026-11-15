@@ -13,6 +13,7 @@ A running record, for readers, of what each commit made possible or better. It i
 
 | Date | Commits |
 |---|---|
+| [2026-11-15](2026-11-15.md) | Shortest paths with weights of either sign and negative cycles named; formal contexts, their concept lattices and canonical bases of implications |
 | [2026-11-14](2026-11-14.md) | Acyclic relations: orders, cones, the covering relation, quotients; forward chaining over rules with several premises |
 | [2026-11-13](2026-11-13.md) | Braid groups: the word problem, curves on a punctured disc, Burau's representation; Laurent polynomials |
 | [2026-11-12](2026-11-12.md) | Where category theory lives: kategoria, on morphe |

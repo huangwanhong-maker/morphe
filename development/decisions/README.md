@@ -24,6 +24,9 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0013](0013-categories-as-objects-of-study-in-kategoria.md) | Categories as objects of study are kategoria's; morphe's `categories` is narrowed to the constructions its modules share | Accepted, provisionally |
 | [0014](0014-braid-groups.md) | Braid groups (the word problem, Dynnikov's coordinates, Burau's representation), and Laurent polynomials | Accepted, provisionally |
 | [0015](0015-acyclic-relations-and-forward-chaining.md) | Acyclic relations (the order, cones, the covering relation, quotients) and forward chaining over rules with several premises, with what rests on an element, in `combinatorics` | Accepted, provisionally |
+| [0016](0016-logic-is-apodeixis.md) | Logic is apodeixis's: the planned `logic` row points to the foundation of logic and verification | Accepted, provisionally |
+| [0017](0017-shortest-paths-of-either-sign.md) | Shortest paths with weights of either sign: Bellman–Ford with negative cycles found and named, Floyd–Warshall for every pair | Accepted, provisionally |
+| [0018](0018-formal-concepts.md) | Formal contexts, their concepts by NextClosure, the concept lattice and the canonical basis of implications | Accepted, provisionally |
 
 ## 2. Template
 

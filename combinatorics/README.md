@@ -21,6 +21,7 @@ Combinatorial structures and their algorithms. The first is the graph, as the 1-
 | `canonical.hpp` | `LabelledGraph{vertex, edges}`; `canonical_form(G, limit)` → `CanonicalForm{code, automorphisms, exact, order}` |
 | `increasing.hpp` | `heaviest_increasing_subsequence(v, w)` and `longest_increasing_subsequence(v)`, strictly increasing, in O(n log n) by a Fenwick tree of prefix maxima (Fredman 1975; Jacobson and Vo 1992); `heaviest_chain(x, y, w)`, chains of points strictly increasing in both coordinates; ties broken by least index, so the answer is a function of the input. The genomics domain chains the maximal unique matches of two genomes with it |
 | `acyclic.hpp` | Relations as arcs (decision 0015): `topological_order(n, arcs)` → `Ordering{acyclic, order, cycle}`; `down`, `up` and `reach` → the elements reached with their least number of arcs, to a bound; `reachability`, `comparable`; `reduction`, the covering relation; `quotient(n, arcs, cls, classes)` → the arcs between classes with their numbers. Rules with several premises: `closure(n, rules, givens, withheld)` by forward chaining, and `rests_on(n, rules, givens, c)` |
+| `concepts.hpp` | Formal contexts (decision 0018): `Context{objects, attributes, incidence}`; `common_attributes`, `common_objects`, `closure`; `concepts(c)` → every `FormalConcept{extent, intent}` by NextClosure in lectic order; `lattice(c)` → `ConceptLattice{concepts, covers, top, bottom}`; `stem_base(c)` → the canonical basis of `Implication{premise, conclusion}`; `closure_under(implications, s, m)`, `holds(c, implication)` |
 
 ## 4. Checks
 
@@ -52,3 +53,5 @@ morphe `algebra` (the determinant, for the matrix-tree and BEST theorems) and `a
 
 1. **C-sets** as the common representation, once a second schema (semi-simplicial sets, Petri nets) is written.
 2. **Graph isomorphism at scale.** The canonical form tries every ordering within the stable cells. Individualising one vertex at a time and refining again, with the automorphisms found pruning the search tree (McKay and Piperno 2014), would make highly symmetric graphs cheap; the symmetry factors of Feynman graphs and the types of a history's bubbles would use it.
+
+`tests/check_concepts.cpp` (9 checks): on 120 random contexts, the concepts equal the closed sets found among every subset of attributes, in lectic order; meets and joins by intersection; the covering relation by brute force; the stem base sound, complete, minimal and one implication per pseudo-intent; the contranominal scale's 2ⁿ concepts and the ordinal scale's n.
