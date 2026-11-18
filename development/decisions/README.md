@@ -27,6 +27,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0016](0016-logic-is-apodeixis.md) | Logic is apodeixis's: the planned `logic` row points to the foundation of logic and verification | Accepted, provisionally |
 | [0017](0017-shortest-paths-of-either-sign.md) | Shortest paths with weights of either sign: Bellman–Ford with negative cycles found and named, Floyd–Warshall for every pair | Accepted, provisionally |
 | [0018](0018-formal-concepts.md) | Formal contexts, their concepts by NextClosure, the concept lattice and the canonical basis of implications | Accepted, provisionally |
+| [0019](0019-flows-in-networks.md) | Flows in networks: the greatest flow and its least cut (Dinic), the cheapest flow with potentials and a price, flows as paths, flows over time on the time-expanded network with the most that can reach a sink by every step | Accepted, provisionally |
 
 ## 2. Template
 
