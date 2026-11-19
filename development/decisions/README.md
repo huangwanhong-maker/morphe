@@ -28,6 +28,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0017](0017-shortest-paths-of-either-sign.md) | Shortest paths with weights of either sign: Bellman–Ford with negative cycles found and named, Floyd–Warshall for every pair | Accepted, provisionally |
 | [0018](0018-formal-concepts.md) | Formal contexts, their concepts by NextClosure, the concept lattice and the canonical basis of implications | Accepted, provisionally |
 | [0019](0019-flows-in-networks.md) | Flows in networks: the greatest flow and its least cut (Dinic), the cheapest flow with potentials and a price, flows as paths, flows over time on the time-expanded network with the most that can reach a sink by every step | Accepted, provisionally |
+| [0020](0020-blocks-cut-vertices-and-bridges.md) | Blocks, cut vertices and bridges of a multigraph, by Hopcroft and Tarjan's lowpoints in one iterative search | Accepted, provisionally |
 
 ## 2. Template
 

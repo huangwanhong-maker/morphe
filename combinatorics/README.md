@@ -17,6 +17,7 @@ Combinatorial structures and their algorithms. The first is the graph, as the 1-
 | Header | Content |
 |---|---|
 | `graph.hpp` | `Multigraph{vertices, edges}` with `incidence`; `Step{edge, sign}`; `spanning_forest(G, first)` → `SpanningForest` with `path(u, v, G)`, `components`; `distances(G, source)` |
+| `blocks.hpp` | `blocks(G)` → `Blocks{cut, bridge, blocks, block_of}`: cut vertices, bridges and blocks of a multigraph read as undirected, by Hopcroft and Tarjan's lowpoints (decision 0020) |
 | `eulerian.hpp` | Directed multigraphs: `degrees`, `edges_connected`, `eulerian_status` → `EulerianStatus{kind, start, end}`; `eulerian_circuit(G, first)` and `eulerian_trail(G)` by Hierholzer (1873); `for_each_eulerian_circuit`; `laplacian`, `count_arborescences(G, root)` by the matrix-tree theorem (Tutte 1948); `suppress_transit_vertices`; `count_eulerian_circuits` by the BEST theorem (van Aardenne-Ehrenfest and de Bruijn 1951; Smith and Tutte 1941) and `count_eulerian_trails`, exactly |
 | `canonical.hpp` | `LabelledGraph{vertex, edges}`; `canonical_form(G, limit)` → `CanonicalForm{code, automorphisms, exact, order}` |
 | `increasing.hpp` | `heaviest_increasing_subsequence(v, w)` and `longest_increasing_subsequence(v)`, strictly increasing, in O(n log n) by a Fenwick tree of prefix maxima (Fredman 1975; Jacobson and Vo 1992); `heaviest_chain(x, y, w)`, chains of points strictly increasing in both coordinates; ties broken by least index, so the answer is a function of the input. The genomics domain chains the maximal unique matches of two genomes with it |
