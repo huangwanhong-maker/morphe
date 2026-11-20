@@ -13,6 +13,7 @@ A running record, for readers, of what each commit made possible or better. It i
 
 | Date | Commits |
 |---|---|
+| [2026-11-20](2026-11-20.md) | Normal forms of traces |
 | [2026-11-19](2026-11-19.md) | Blocks, cut vertices and bridges |
 | [2026-11-18](2026-11-18.md) | Flows in networks: the greatest flow and its least cut, the cheapest flow, flows as paths, flows over time |
 | [2026-11-15](2026-11-15.md) | Shortest paths with weights of either sign and negative cycles named; formal contexts, their concept lattices and canonical bases of implications |
