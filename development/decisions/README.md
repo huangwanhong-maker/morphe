@@ -30,6 +30,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0019](0019-flows-in-networks.md) | Flows in networks: the greatest flow and its least cut (Dinic), the cheapest flow with potentials and a price, flows as paths, flows over time on the time-expanded network with the most that can reach a sink by every step | Accepted, provisionally |
 | [0020](0020-blocks-cut-vertices-and-bridges.md) | Blocks, cut vertices and bridges of a multigraph, by Hopcroft and Tarjan's lowpoints in one iterative search | Accepted, provisionally |
 | [0021](0021-normal-forms-of-traces.md) | Normal forms of traces: words over an alphabet with an independence, their causal order, lexicographic and Foata normal forms, equivalence checked apart by the projection lemma | Accepted, provisionally |
+| [0022](0022-straight-line-grammars-by-re-pair.md) | Straight-line grammars of a set of words by Re-Pair: the most frequent pair replaced by a new letter until no pair occurs twice, occurrences without overlap, exact expansion | Accepted, provisionally |
 
 ## 2. Template
 

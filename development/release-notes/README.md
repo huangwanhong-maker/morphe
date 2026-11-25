@@ -13,6 +13,7 @@ A running record, for readers, of what each commit made possible or better. It i
 
 | Date | Commits |
 |---|---|
+| [2026-11-26](2026-11-26.md) | Straight-line grammars by Re-Pair |
 | [2026-11-20](2026-11-20.md) | Normal forms of traces |
 | [2026-11-19](2026-11-19.md) | Blocks, cut vertices and bridges |
 | [2026-11-18](2026-11-18.md) | Flows in networks: the greatest flow and its least cut, the cheapest flow, flows as paths, flows over time |
